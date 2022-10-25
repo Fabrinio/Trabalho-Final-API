@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,25 +23,32 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 @Entity
 @Table(name = "produto")
 public class Produto {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
 	private Long idProduto;
 	
 	@Column(name = "nome")
+	@NotBlank(message = "O nome é obrigatório")
+	@Length(min = 3, max = 35, message = "O nome deverá ter no máximo {max} caracteres")
 	private String nome;
 	
 	@Column(name = "descricao")
+	@NotNull(message = "O campo está vazio")
 	private String descricao;
 	
 	@Column(name = "qtd_estoque")
+	@NotNull(message = "O campo está vazio")
 	private String qtdEstoque;
 
 	@Column(name = "data_cadastro")
 	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
+	@NotNull(message = "O campo está vazio")
 	private Date dataCadastro;
 	
 	@Column(name = "valor_unitario")
+	@NotNull(message = "O campo está vazio")
 	private double valorUnitario;
 	
 	@ManyToOne

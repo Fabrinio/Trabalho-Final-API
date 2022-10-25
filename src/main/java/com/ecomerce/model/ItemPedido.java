@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 @Entity
 public class ItemPedido {
 
@@ -16,6 +17,7 @@ public class ItemPedido {
 	private Long idItemPedido;
 
 	@Column(name = "quantidade")
+	@NotNull(message = "O campo está vazio")
 	private int quantidade;
 
 	@Column(name = "preco_venda")

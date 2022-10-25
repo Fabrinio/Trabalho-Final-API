@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -22,9 +24,11 @@ public class Endereco {
 
 	@Column(name = "cep")
 	@NotBlank(message = "O cep é obrigatório")
+	@Length(min = 8, max = 9, message = "O cep deverá ter no minímo 3 {mim} caracteres e no máximo {max}")
 	private String cepEndereco;
 
 	@Column(name = "rua")
+	@Length(min = 3, max = 35, message = "A rua deverá ter no minímo 3 {mim} caracteres")
 	private String ruaEndereco;
 
 	@Column(name = "bairro")
@@ -32,21 +36,20 @@ public class Endereco {
 	private String bairroEndereco;
 
 	@Column(name = "cidade")
-
 	private String cidadeEndereco;
 
 	@Column(name = "numero")
-	
 	private Long numeroEndereco;
 
 	@Column(name = "complemento")
-	
 	private String complementoEndereco;
 
 	@Column(name = "uf")
 	@NotBlank(message = "A uf é obrigatória")
+	@Length(min = 2, max = 2, message = "A UF deverá ter 2 caracteres")
 	private String ufEndereco;
 
+	
 	@OneToMany(mappedBy = "endereco")
 	@JsonIgnore
 	private List<Cliente> clienteList;

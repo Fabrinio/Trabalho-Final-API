@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -28,18 +29,22 @@ public class Pedido {
 	
 	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "data_pedido")
+	@NotNull(message = "O campo está vazio")
 	private Date dataPedido;
 	
 	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "data_entrega")
+	@NotNull(message = "O campo está vazio")
 	private Date dataEntrega;
 	
 	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "data_envio")
+	@NotNull(message = "O campo está vazio")
 	private Date dataEnvio;
 
 	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "status")
+	@NotNull(message = "O campo está vazio")
 	private String status;
 
 	@OneToMany(targetEntity = ItemPedido.class, cascade = CascadeType.ALL, orphanRemoval = true)

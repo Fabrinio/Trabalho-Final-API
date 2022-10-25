@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -24,6 +27,8 @@ public class Categoria {
 
 	@Column(nullable = false)
 	@NotBlank(message = "O nome é obrigatório")
+	@Length(min = 3, max = 35, message = "O nome deverá ter no máximo {max} caracteres")
+	@Pattern(regexp = "[A-Za-z\\s]+$", message = "O nome da categoria só deve conter letras '.")
 	private String nome;
 
 	@Column(name = "descricao")

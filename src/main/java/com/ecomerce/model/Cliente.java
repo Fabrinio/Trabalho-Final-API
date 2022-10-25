@@ -10,6 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -26,18 +32,25 @@ public class Cliente {
 	private Long idCliente;
 	
 	@Column(nullable = false)
+	@NotBlank(message = "O nome é obrigatório")
+	@Email(regexp = "[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
 	private String email;
 	
 	@Column(name = "nome_completo")
+	@NotBlank(message = "O nome é obrigatório")
+	@Length(min = 3, max = 35, message = "O nome deverá ter no máximo {max} caracteres")
 	private String nomeCompleto;
 	
 	@Column(name = "cpf")
+	@NotBlank(message = "O cpf é obrigatório")
 	private String cpf;
 
 	@Column(name = "telefone")
+	@NotBlank(message = "O telefone é obrigatório")
 	private String telefone;
 	
 	@Column(name = "data_nascimento")
+	@NotNull(message = "A data do pedido é obrigatória")
 	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	private Date dataNascimento;
 	
