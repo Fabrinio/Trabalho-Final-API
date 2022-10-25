@@ -30,7 +30,7 @@ public class EnderecoService {
 		return listaEnderecoResponseDTO;
 	}
 
-	public EnderecoResponseDTO findEnderecoById(Integer id) {
+	public EnderecoResponseDTO findEnderecoById(Long id) {
 		return enderecoRepository.findById(id).isPresent() ? converterEntityToDTO(enderecoRepository.findById(id).get())
 				: null;
 	}
@@ -45,7 +45,7 @@ public class EnderecoService {
 		return converterEntityToDTO(endereco);
 	}
 
-	public void deleteEnderecoById(Integer id) {
+	public void deleteEnderecoById(Long id) {
 		Endereco endereco = enderecoRepository.findById(id).get();
 		enderecoRepository.delete(endereco);
 	}

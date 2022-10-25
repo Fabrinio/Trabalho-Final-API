@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecomerce.dto.CategoriaResponseDTO;
 import com.ecomerce.exception.ResourceNotFoundException;
 import com.ecomerce.model.Categoria;
 import com.ecomerce.repositories.CategoriaRepository;
@@ -32,7 +33,7 @@ public class CategoriaService  {
 	
 	public Categoria atualizar(Long id, Categoria categoria) {
 		
-		//Usando o metodo somente para validar se existe algo com o id informado.
+		
 		obterPorId(id);
 		
 		categoria.setIdCategoria(id);
@@ -48,5 +49,21 @@ public class CategoriaService  {
 		
 		categoria.setIdCategoria(null);		
 		return categoria = repositorio.save(categoria);
+	}
+	
+	public CategoriaResponseDTO converterEntityToDTO(Categoria categoria) {
+		CategoriaResponseDTO CategoriaResponseDTO = new CategoriaResponseDTO();
+		CategoriaResponseDTO.setIdCategoria(categoria.getIdCategoria());
+		CategoriaResponseDTO.setDescricaoCategoria(categoria.getDescricao());
+		CategoriaResponseDTO.setNomeCategoria(categoria.getNome());
+		return CategoriaResponseDTO;
+	}
+
+	public Categoria converterDTOToEntity(CategoriaResponseDTO categoriaResponseDTO) {
+		Categoria categoria = new Categoria();
+		categoria.setIdCategoria(categoriaResponseDTO.getIdCategoria());
+		categoria.setDescricao(categoriaResponseDTO.getDescricaoCategoria());
+		categoria.setNome(categoriaResponseDTO.getNomeCategoria());
+		return categoria;
 	}
 }

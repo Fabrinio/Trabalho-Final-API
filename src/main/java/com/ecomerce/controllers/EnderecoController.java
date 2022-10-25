@@ -32,7 +32,7 @@ public class EnderecoController {
 		return new ResponseEntity<>(enderecoList, HttpStatus.OK);
 	}
 
-	public ResponseEntity<EnderecoResponseDTO> findEnderecoById(@PathVariable Integer id) {
+	public ResponseEntity<EnderecoResponseDTO> findEnderecoById(@PathVariable Long id) {
 		EnderecoResponseDTO enderecoDTO = enderecoService.findEnderecoById(id);
 		if (null == enderecoDTO)
 			throw new ResourceNotFoundException("Não foi encontrado endereço com id: " + id + " pois não existe.");
@@ -53,7 +53,7 @@ public class EnderecoController {
 			return new ResponseEntity<>(enderecoService.updateEndereco(enderecoDTO), HttpStatus.OK);
 	}
 
-	public ResponseEntity<String> deleteEndereco(@PathVariable Integer id) {
+	public ResponseEntity<String> deleteEndereco(@PathVariable Long id) {
 		EnderecoResponseDTO enderecoAtualizado = enderecoService.findEnderecoById(id);
 		if (null == enderecoAtualizado)
 			throw new ResourceNotFoundException(

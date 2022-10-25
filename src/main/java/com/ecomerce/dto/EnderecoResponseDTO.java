@@ -2,7 +2,7 @@ package com.ecomerce.dto;
 
 public class EnderecoResponseDTO {
 
-		private Integer idEndereco;
+		private Long idEndereco;
 
 		private String cepEndereco;
 
@@ -12,17 +12,17 @@ public class EnderecoResponseDTO {
 		
 		private String cidadeEndereco;
 
-		private Integer numeroEndereco;
+		private Long numeroEndereco;
 		
 		private String complemetnoEndereco;
 
 		private String ufEndereco;
 
-		public Integer getIdEndereco() {
+		public Long getIdEndereco() {
 			return idEndereco;
 		}
 
-		public void setIdEndereco(Integer idEndereco) {
+		public void setIdEndereco(Long idEndereco) {
 			this.idEndereco = idEndereco;
 		}
 
@@ -58,11 +58,11 @@ public class EnderecoResponseDTO {
 			this.cidadeEndereco = cidadeEndereco;
 		}
 
-		public Integer getNumeroEndereco() {
+		public Long getNumeroEndereco() {
 			return numeroEndereco;
 		}
 
-		public void setNumeroEndereco(Integer numeroEndereco) {
+		public void setNumeroEndereco(Long numeroEndereco) {
 			this.numeroEndereco = numeroEndereco;
 		}
 

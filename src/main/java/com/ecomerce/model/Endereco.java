@@ -21,7 +21,7 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_endereco")
-	private Integer idEndereco;
+	private Long idEndereco;
 
 	@Column(name = "cep")
 	@NotBlank(message = "O cep é obrigatório")
@@ -44,7 +44,7 @@ public class Endereco {
 
 	@Column(name = "numero")
 	
-	private Integer numeroEndereco;
+	private Long numeroEndereco;
 
 	@Column(name = "complemento")
 	
@@ -59,11 +59,11 @@ public class Endereco {
 	@JsonIgnore
 	private List<Cliente> clienteList;
 
-	public Integer getIdEndereco() {
+	public Long getIdEndereco() {
 		return idEndereco;
 	}
 
-	public void setIdEndereco(Integer idEndereco) {
+	public void setIdEndereco(Long idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 
@@ -99,11 +99,11 @@ public class Endereco {
 		this.cidadeEndereco = cidadeEndereco;
 	}
 
-	public Integer getNumeroEndereco() {
+	public Long getNumeroEndereco() {
 		return numeroEndereco;
 	}
 
-	public void setNumeroEndereco(Integer numeroEndereco) {
+	public void setNumeroEndereco(Long numeroEndereco) {
 		this.numeroEndereco = numeroEndereco;
 	}
 
