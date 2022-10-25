@@ -7,27 +7,48 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
+@Table(name = "produto")
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_produto")
 	private Long idProduto;
 	
-	@Column(nullable = false)
+	@Column(name = "nome")
 	private String nome;
 	
-	@Column(nullable = false)
+	@Column(name = "descricao")
 	private String descricao;
 	
-	@Column(nullable = false)
+	@Column(name = "qtd_estoque")
 	private String qtdEstoque;
 
-	@Column(nullable = false)
+	@Column(name = "data_cadastro")
 	private Date dataCadastro;
 	
-	@Column(nullable = false)
+	@Column(name = "valor_unitario")
 	private double valorUnitario;
+	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
+	private Categoria categoria;
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 	public Long getIdProduto() {
 		return idProduto;

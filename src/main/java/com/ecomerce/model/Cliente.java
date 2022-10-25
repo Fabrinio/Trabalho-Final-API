@@ -7,28 +7,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cliente")
 	private Long idCliente;
 	
 	@Column(nullable = false)
 	private String email;
 	
-	@Column(nullable = false)
+	@Column(name = "nome_completo")
 	private String nomeCompleto;
 	
-	@Column(nullable = false)
+	@Column(name = "cpf")
 	private String cpf;
 
-	@Column(nullable = false)
+	@Column(name = "telefone")
 	private String telefone;
 	
-	@Column(nullable = false)
+	@Column(name = "data_nascimento")
 	private Date dataNasc;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
+	private Endereco endereco;
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public Long getIdCliente() {
 		return idCliente;

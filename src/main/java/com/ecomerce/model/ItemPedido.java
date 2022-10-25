@@ -4,27 +4,36 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
 
 public class ItemPedido {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_item_pedido")
 	private Long idItemPedido;
-	
-	@Column(nullable = false)
+
+	@Column(name = "quantidade")
 	private int quantidade;
-	
-	@Column(nullable = false)
+
+	@Column(name = "preco_venda")
 	private Double precoVenda;
-	
-	@Column(nullable = false)
+
+	@Column(name = "percentual_desconto")
 	private int percentualDesconto;
 
-	@Column(nullable = false)
+	@Column(name = "valor_bruto")
 	private Double valorBruto;
-	
-	@Column(nullable = false)
+
+	@Column(name = "valor_liquido")
 	private Double valorLiquido;
+
+	@ManyToOne
+	@JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
+	private Produto produto;
 
 	public Long getIdItemPedido() {
 		return idItemPedido;
@@ -72,5 +81,22 @@ public class ItemPedido {
 
 	public void setValorLiquido(Double valorLiquido) {
 		this.valorLiquido = valorLiquido;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	@Override
+	public String toString() {
+		return "Produto = " + produto.getNome() + "<br>"
+				+ "Quantidade = " + quantidade + "<br>"
+				+ "Preco Venda = R$" + String.format("%.2f", precoVenda) + "<br>"
+				+ "Valor Bruto Pedido = R$" + String.format("%.2f", valorBruto) + "<br>" 
+				+ "Percentual Desconto = " + percentualDesconto + "%<br>"				  
+				+ "Valor Liquido Pedido = R$" + String.format("%.2f", valorLiquido) + "<br>";
 	}
 }
