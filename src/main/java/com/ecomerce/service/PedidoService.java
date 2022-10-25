@@ -1,5 +1,6 @@
 package com.ecomerce.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecomerce.exception.ResourceNotFoundException;
+import com.ecomerce.model.MensagemEmail;
 import com.ecomerce.model.Pedido;
 import com.ecomerce.repositories.PedidoRepository;
 
@@ -14,6 +16,8 @@ import com.ecomerce.repositories.PedidoRepository;
 public class PedidoService {
 	@Autowired
 	private PedidoRepository repositorio;
+	@Autowired
+	private EmailService emailService;
 	
 	public List<Pedido> obterTodos() {
 		return repositorio.findAll();
@@ -44,9 +48,24 @@ public class PedidoService {
 		repositorio.deleteById(id);
 	}
 	
-	public Pedido cadastrar(Pedido pedido) {
+public Pedido cadastrar(Pedido pedido) {
 		
-		pedido.setIdPedido(null);		
+		pedido.setIdPedido(null);
+		
+		
+		var destinatarios = new ArrayList<String>();
+		destinatarios.add("itsfabrinio@gmail.com");
+		
+		String mensagem = "<h1 style=\"color:red\">  Pedido feito com sucesso! </h1>" + "<p>Seu pedido está sendo preparado para a entrega e logo estará na sua casa!</p> ";
+		
+		MensagemEmail email = new MensagemEmail(
+				"Nova conta criada.",
+				mensagem, 
+				"turma05serratec@gmail.com",
+				destinatarios);
+		
+		emailService.enviar(email);
+		
 		return pedido = repositorio.save(pedido);
 	}
 }
