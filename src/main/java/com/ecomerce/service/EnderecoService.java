@@ -55,7 +55,7 @@ public class EnderecoService {
 		endereco.setBairroEndereco(enderecoDTO.getBairroEndereco());
 		endereco.setCepEndereco(enderecoDTO.getCepEndereco());
 		endereco.setCidadeEndereco(enderecoDTO.getCidadeEndereco());
-		endereco.setComplemetnoEndereco(enderecoDTO.getComplemetnoEndereco());
+		endereco.setComplementoEndereco(enderecoDTO.getComplemetnoEndereco());
 		endereco.setIdEndereco(enderecoDTO.getIdEndereco());
 		endereco.setNumeroEndereco(enderecoDTO.getNumeroEndereco());
 		endereco.setRuaEndereco(enderecoDTO.getRuaEndereco());
@@ -68,7 +68,7 @@ public class EnderecoService {
 		enderecoDTO.setBairroEndereco(endereco.getBairroEndereco());
 		enderecoDTO.setCepEndereco(endereco.getCepEndereco());
 		enderecoDTO.setCidadeEndereco(endereco.getCidadeEndereco());
-		enderecoDTO.setComplemetnoEndereco(endereco.getComplemetnoEndereco());
+		enderecoDTO.setComplemetnoEndereco(endereco.getComplementoEndereco());
 		enderecoDTO.setIdEndereco(endereco.getIdEndereco());
 		enderecoDTO.setNumeroEndereco(endereco.getNumeroEndereco());
 		enderecoDTO.setRuaEndereco(endereco.getRuaEndereco());
@@ -90,7 +90,7 @@ public class EnderecoService {
 		Endereco endereco = new Endereco();
 		endereco.setCepEndereco(cepDTO.getCep());
 		endereco.setBairroEndereco(cepDTO.getBairro());
-		endereco.setComplemetnoEndereco(cepDTO.getComplemento());
+		endereco.setComplementoEndereco(cepDTO.getComplemento());
 		endereco.setUfEndereco(cepDTO.getUf());
 		endereco.setCidadeEndereco(cepDTO.getCidade());
 		endereco.setRuaEndereco(cepDTO.getLogradouro());
@@ -113,7 +113,13 @@ public class EnderecoService {
 	public EnderecoResponseDTO saveCep(String cep, EnderecoResponseDTO enderecoDTO) {
 		Endereco cepEnd = CepDTOParaEndereco(consultarCepDTO(cep));
 		cepEnd.setNumeroEndereco(enderecoDTO.getNumeroEndereco());
-		cepEnd.setComplemetnoEndereco(enderecoDTO.getComplemetnoEndereco());
+		cepEnd.setComplementoEndereco(enderecoDTO.getComplemetnoEndereco());
 		return converterEntityToDTO(enderecoRepository.save(cepEnd));
+	}
+	
+public Endereco cadastrar(Endereco endereco) {
+		
+		endereco.setIdEndereco(null);		
+		return endereco = enderecoRepository.save(endereco);
 	}
 }

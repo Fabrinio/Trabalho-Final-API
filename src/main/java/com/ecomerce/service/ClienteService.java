@@ -1,6 +1,5 @@
 package com.ecomerce.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,15 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.ecomerce.exception.ResourceNotFoundException;
 import com.ecomerce.model.Cliente;
-import com.ecomerce.model.MensagemEmail;
 import com.ecomerce.repositories.ClienteRepository;
 
 @Service
 public class ClienteService {
 	@Autowired
 	private ClienteRepository repositorio;
-	@Autowired
-	private EmailService emailService;
 	
 	public List<Cliente> obterTodos() {
 		return repositorio.findAll();
@@ -48,24 +44,9 @@ public class ClienteService {
 		repositorio.deleteById(id);
 	}
 	
-	public Cliente cadastrar(Cliente cliente) {
+public Cliente cadastrar(Cliente cliente) {
 		
-		cliente.setIdCliente(null);
-		
-		
-		var destinatarios = new ArrayList<String>();
-		destinatarios.add("itsfabrinio@gmail.com");
-		
-		String mensagem = "<h1 style=\"color:red\">  Olá sr(a) " + cliente.getNomeCompleto() + "! </h1> <p>Conta criada com sucesso!</p> ";
-		
-		MensagemEmail email = new MensagemEmail(
-				"Nova conta criada.",
-				mensagem, 
-				"turma05serratec@gmail.com",
-				destinatarios);
-		
-		emailService.enviar(email);
-		
+		cliente.setIdCliente(null);		
 		return cliente = repositorio.save(cliente);
 	}
 	

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecomerce.dto.CepDTO;
 import com.ecomerce.dto.EnderecoResponseDTO;
 import com.ecomerce.exception.ResourceNotFoundException;
+import com.ecomerce.model.Endereco;
 import com.ecomerce.service.EnderecoService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/enderecos")
+@RequestMapping("/api/enderecos")
 @Tag(name = "Endereço")
 public class EnderecoController {
 
@@ -34,6 +36,7 @@ public class EnderecoController {
 		return new ResponseEntity<>(enderecoList, HttpStatus.OK);
 	}
 	
+	@GetMapping("/buscar/{id}")
 	public ResponseEntity<EnderecoResponseDTO> BuscarPorId(@PathVariable Long id) {
 		EnderecoResponseDTO enderecoDTO = enderecoService.findEnderecoById(id);
 		if (null == enderecoDTO)
@@ -42,11 +45,13 @@ public class EnderecoController {
 			return new ResponseEntity<>(enderecoDTO, HttpStatus.OK);
 	}
 
-	public ResponseEntity<EnderecoResponseDTO> inserirEndereco(@RequestBody @Valid EnderecoResponseDTO enderecoDTO) {
-		EnderecoResponseDTO novoEndereco = enderecoService.saveEndereco(enderecoDTO);
-		return new ResponseEntity<>(novoEndereco, HttpStatus.CREATED);
+	@PostMapping("/cadastrar") 
+	public ResponseEntity<Endereco> cadastrar(@RequestBody Endereco endereco) {
+		endereco = enderecoService.cadastrar(endereco);
+		return new ResponseEntity<>(endereco, HttpStatus.CREATED); // 201
 	}
 
+	@GetMapping("/atualizar")
 	public ResponseEntity<EnderecoResponseDTO> atualizarEndereco(@RequestBody @Valid EnderecoResponseDTO enderecoDTO) {
 		EnderecoResponseDTO enderecoAtualizado = enderecoService.findEnderecoById(enderecoDTO.getIdEndereco());
 		if (null == enderecoAtualizado)
@@ -55,6 +60,7 @@ public class EnderecoController {
 			return new ResponseEntity<>(enderecoService.updateEndereco(enderecoDTO), HttpStatus.OK);
 	}
 
+	@GetMapping("/deletar")
 	public ResponseEntity<String> deleteEndereco(@PathVariable Long id) {
 		EnderecoResponseDTO enderecoAtualizado = enderecoService.findEnderecoById(id);
 		if (null == enderecoAtualizado)

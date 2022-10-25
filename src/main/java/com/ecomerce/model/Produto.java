@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 
 @Entity
@@ -33,7 +34,7 @@ public class Produto {
 	private String qtdEstoque;
 
 	@Column(name = "data_cadastro")
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	private Date dataCadastro;
 	
 	@Column(name = "valor_unitario")

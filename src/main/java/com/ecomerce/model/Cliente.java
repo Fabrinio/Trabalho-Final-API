@@ -1,5 +1,6 @@
 package com.ecomerce.model;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
+
 
 
 @Entity
@@ -32,7 +38,8 @@ public class Cliente {
 	private String telefone;
 	
 	@Column(name = "data_nascimento")
-	private Date dataNasc;
+	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
+	private Date dataNascimento;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
@@ -40,10 +47,6 @@ public class Cliente {
 
 	public Endereco getEndereco() {
 		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 	}
 
 	public Long getIdCliente() {
@@ -87,11 +90,11 @@ public class Cliente {
 	}
 
 	public Date getDataNasc() {
-		return dataNasc;
+		return dataNascimento;
 	}
 
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDataNasc(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	

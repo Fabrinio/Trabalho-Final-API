@@ -9,9 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,12 +22,9 @@ public class Endereco {
 
 	@Column(name = "cep")
 	@NotBlank(message = "O cep é obrigatório")
-	@Pattern(regexp = "\\d{5}-?\\d{3}", message = "O cep deve respeitar o formato 'XXXXX-XXX'.")
 	private String cepEndereco;
 
 	@Column(name = "rua")
-	
-	@Length(min = 3, max = 35, message = "A rua deverá ter no minímo 3 {mim} caracteres")
 	private String ruaEndereco;
 
 	@Column(name = "bairro")
@@ -47,11 +41,10 @@ public class Endereco {
 
 	@Column(name = "complemento")
 	
-	private String complemetnoEndereco;
+	private String complementoEndereco;
 
 	@Column(name = "uf")
 	@NotBlank(message = "A uf é obrigatória")
-	@Length(min = 2, max = 2, message = "A UF deverá ter 2 caracteres")
 	private String ufEndereco;
 
 	@OneToMany(mappedBy = "endereco")
@@ -106,12 +99,12 @@ public class Endereco {
 		this.numeroEndereco = numeroEndereco;
 	}
 
-	public String getComplemetnoEndereco() {
-		return complemetnoEndereco;
+	public String getComplementoEndereco() {
+		return complementoEndereco;
 	}
 
-	public void setComplemetnoEndereco(String complemetnoEndereco) {
-		this.complemetnoEndereco = complemetnoEndereco;
+	public void setComplementoEndereco(String complementoEndereco) {
+		this.complementoEndereco = complementoEndereco;
 	}
 
 	public String getUfEndereco() {
@@ -125,11 +118,4 @@ public class Endereco {
 	public List<Cliente> getClienteList() {
 		return clienteList;
 	}
-
-	public void setClienteList(List<Cliente> clienteList) {
-		this.clienteList = clienteList;
-	}
-
-	
-
 }
