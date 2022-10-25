@@ -22,7 +22,7 @@ public class ItemPedido {
 	private Double precoVenda;
 
 	@Column(name = "percentual_desconto")
-	private int percentualDesconto;
+	private String percentualDesconto;
 
 	@Column(name = "valor_bruto")
 	private Double valorBruto;
@@ -59,11 +59,11 @@ public class ItemPedido {
 		this.precoVenda = precoVenda;
 	}
 
-	public int getPercentualDesconto() {
+	public String getPercentualDesconto() {
 		return percentualDesconto;
 	}
 
-	public void setPercentualDesconto(int percentualDesconto) {
+	public void setPercentualDesconto(String percentualDesconto) {
 		this.percentualDesconto = percentualDesconto;
 	}
 

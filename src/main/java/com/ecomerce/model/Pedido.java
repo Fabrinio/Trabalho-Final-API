@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 
 
 @Entity
@@ -23,15 +26,19 @@ public class Pedido {
 	@Column(name = "id_pedido")
 	private Long idPedido;
 	
+	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "data_pedido")
 	private Date dataPedido;
 	
+	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "data_entrega")
 	private Date dataEntrega;
 	
+	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "data_envio")
 	private Date dataEnvio;
 
+	@JsonFormat(shape = Shape.STRING, pattern= "dd/MM/yyyy")
 	@Column(name = "status")
 	private String status;
 
