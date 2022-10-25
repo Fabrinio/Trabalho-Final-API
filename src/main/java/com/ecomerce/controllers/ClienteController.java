@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecomerce.model.Cliente;
 import com.ecomerce.service.ClienteService;
 
-@RestController // Corretor
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@RestController
 @RequestMapping("/api/cliente")
+@Tag(name = "Cliente")
 public class ClienteController {
 	@Autowired
 	private ClienteService servico;

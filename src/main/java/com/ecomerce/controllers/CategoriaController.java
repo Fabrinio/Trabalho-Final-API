@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecomerce.model.Categoria;
 import com.ecomerce.service.CategoriaService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 @RestController 
 @RequestMapping("/api/categoria")
+@Tag(name = "Categoria")
 public class CategoriaController {
 	@Autowired
 	private CategoriaService servico;

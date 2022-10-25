@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ecomerce.exception.ResourceNotFoundException;
 import com.ecomerce.model.ItemPedido;
 import com.ecomerce.repositories.ItemPedidoRepository;
-
+@Service
 public class ItemPedidoService {
 	@Autowired
 	private ItemPedidoRepository repositorio;

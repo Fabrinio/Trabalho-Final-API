@@ -1,5 +1,6 @@
 package com.ecomerce.service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,11 @@ import com.ecomerce.repositories.ProdutoRepository;
 public class ProdutoService {
 	@Autowired
 	private ProdutoRepository repositorio;
+	
+	@Autowired
+	CategoriaService categoriaService;
+
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public List<Produto> obterTodos() {
 		return repositorio.findAll();

@@ -67,4 +67,10 @@ public class EnderecoController {
 		CepDTO cepDTO = enderecoService.consultarCepDTO(cep);
 		return new ResponseEntity<>(cepDTO, HttpStatus.OK);
 	}
+	 public ResponseEntity<EnderecoResponseDTO> SalvarCep(@PathVariable String cep, EnderecoResponseDTO enderecoDTO) {
+	    	
+	    	EnderecoResponseDTO cepDTO = enderecoService.saveCep(cep,enderecoDTO);
+	    	
+	    	return new ResponseEntity<>(cepDTO, HttpStatus.OK);
+	    }
 }

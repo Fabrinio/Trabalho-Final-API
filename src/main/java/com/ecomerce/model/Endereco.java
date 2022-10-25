@@ -25,7 +25,6 @@ public class Endereco {
 
 	@Column(name = "cep")
 	@NotBlank(message = "O cep é obrigatório")
-	@Length(min = 8, max = 9, message = "O cep deverá ter no minímo 3 {mim} caracteres e no máximo {max}")
 	@Pattern(regexp = "\\d{5}-?\\d{3}", message = "O cep deve respeitar o formato 'XXXXX-XXX'.")
 	private String cepEndereco;
 

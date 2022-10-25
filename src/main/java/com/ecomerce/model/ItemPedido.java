@@ -1,14 +1,13 @@
 package com.ecomerce.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-
-
+@Entity
 public class ItemPedido {
 
 	@Id
@@ -31,9 +30,10 @@ public class ItemPedido {
 	@Column(name = "valor_liquido")
 	private Double valorLiquido;
 
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
 	private Produto produto;
+
 
 	public Long getIdItemPedido() {
 		return idItemPedido;
