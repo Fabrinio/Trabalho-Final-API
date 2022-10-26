@@ -18,13 +18,13 @@ public class ItemPedido {
 
 	@Column(name = "quantidade")
 	@NotNull(message = "O campo está vazio")
-	private int quantidade;
+	private Long quantidade;
 
 	@Column(name = "preco_venda")
 	private Double precoVenda;
 
 	@Column(name = "percentual_desconto")
-	private String percentualDesconto;
+	private Double percentualDesconto;
 
 	@Column(name = "valor_bruto")
 	private Double valorBruto;
@@ -45,11 +45,11 @@ public class ItemPedido {
 		this.idItemPedido = idItemPedido;
 	}
 
-	public int getQuantidade() {
+	public Long getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(Long quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -61,11 +61,11 @@ public class ItemPedido {
 		this.precoVenda = precoVenda;
 	}
 
-	public String getPercentualDesconto() {
+	public Double getPercentualDesconto() {
 		return percentualDesconto;
 	}
 
-	public void setPercentualDesconto(String percentualDesconto) {
+	public void setPercentualDesconto(Double percentualDesconto) {
 		this.percentualDesconto = percentualDesconto;
 	}
 

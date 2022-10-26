@@ -49,7 +49,7 @@ public class Pedido {
 
 	@OneToMany(targetEntity = ItemPedido.class, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "id_pedido")
-	private List<ItemPedido> itemPedidoList;
+	private List<ItemPedido> itemPedido;
 
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
@@ -96,11 +96,11 @@ public class Pedido {
 	}
 
 	public List<ItemPedido> getItemPedidoList() {
-		return itemPedidoList;
+		return itemPedido;
 	}
 
 	public void setItemPedidoList(List<ItemPedido> itemPedidoList) {
-		this.itemPedidoList = itemPedidoList;
+		this.itemPedido = itemPedidoList;
 	}
 
 	public Cliente getCliente() {

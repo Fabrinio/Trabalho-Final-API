@@ -25,7 +25,7 @@ public class CategoriaService  {
 		Optional<Categoria> optCategoria = repositorio.findById(id);
 		
 		if(optCategoria.isEmpty()) {
-			throw new ResourceNotFoundException("Não foi possivel encontrar o categoria " + id);
+			throw new ResourceNotFoundException("Não foi possivel encontrar a categoria " + id);
 		}
 		
 		return optCategoria;

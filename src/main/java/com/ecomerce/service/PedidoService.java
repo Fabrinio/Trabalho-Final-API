@@ -50,16 +50,14 @@ public class PedidoService {
 	
 public Pedido cadastrar(Pedido pedido) {
 		
-		pedido.setIdPedido(null);
-		
-		
 		var destinatarios = new ArrayList<String>();
 		destinatarios.add("itsfabrinio@gmail.com");
 		
-		String mensagem = "<h1 style=\"color:red\">  Pedido feito com sucesso! </h1>" + "<p>Seu pedido está sendo preparado para a entrega e logo estará na sua casa!</p> ";
+		String mensagem = "<h1 style=\"color:red; text-align: center\">  Pedido feito com sucesso! 😍😍😍😍😍😍</h1>" + "<p style=\"text-align: center\">Seu pedido está " + pedido.getStatus() +
+				" e logo estará na sua casa!</p> " + "<p <p style=\"text-align: center\">A previsão de entrega é "+pedido.getDataEntrega()+"</p>";
 		
 		MensagemEmail email = new MensagemEmail(
-				"Nova conta criada.",
+				"Pedido feito com sucesso!",
 				mensagem, 
 				"turma05serratec@gmail.com",
 				destinatarios);
