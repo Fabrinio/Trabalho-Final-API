@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecomerce.model.Categoria;
+import com.ecomerce.repositories.CategoriaRepository;
 import com.ecomerce.service.CategoriaService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 
@@ -27,14 +31,23 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class CategoriaController {
 	@Autowired
 	private CategoriaService servico;
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 	
 	
 	@GetMapping("/buscar")
-	public ResponseEntity<List<Categoria>> obterTodos(){
-		
-		List<Categoria> lista = servico.obterTodos();
-		return ResponseEntity.ok(lista); // 200
-	}
+	@ApiOperation(value="Lista todos os categoria", notes="Listagem de Categorias")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Retorna todos os categorias"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
+	
+	public List<Categoria> listar(){
+		return categoriaRepository.findAll();
+		}
 	
 	@GetMapping("/buscar/{id}")
 	public ResponseEntity<Categoria> obterPorId(@PathVariable Long id){
